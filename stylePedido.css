@@ -1,0 +1,15 @@
+.table tbody tr {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.table tbody {
+  display: block;
+}
+.table thead,
+.table tbody tr {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}

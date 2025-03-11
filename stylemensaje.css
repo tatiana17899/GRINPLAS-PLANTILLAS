@@ -1,0 +1,22 @@
+.table tbody tr {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.table tbody {
+  display: block;
+}
+.table thead,
+.table tbody tr {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}
+.table thead th,
+.table tbody td {
+  color: rgba(40, 40, 40, 0.65);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

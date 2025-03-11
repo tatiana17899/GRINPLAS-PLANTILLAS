@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css"
+    />
+    <link rel="stylesheet" href="styleDashboard.css" />
+    <link rel="stylesheet" href="styleproducto.css" />
+    <!--Font Awesome-->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <div class="d-flex flex-column">
+      <div class="d-flex flex-column">
+        <!-- Header -->
+        <div class="d-flex align-items-center p-3">
+          <button class="btn me-3" id="toggle-btn">
+            <img
+              src="https://i.ibb.co/84XNccvZ/menu-5.png"
+              alt="menu-5"
+              width="25px"
+              height="25px"
+              border="0"
+            />
+          </button>
+          <span class="fs-4 fw-bold text-success">GRINPLAS</span>
+          <div
+            class="profile-container ms-auto d-flex align-items-center"
+            id="profileContainer"
+          >
+            <div class="d-flex justify-content-end mb-4 position-relative">
+              <!-- Campana de notificaciones -->
+              <div class="notification-bell" id="notificationBell">
+                <i class="fas fa-bell fa-2x"></i>
+              </div>
+
+              <!-- Dropdown de notificaciones -->
+              <div
+                class="dropdown-menu dropdown-menu-end p-2 shadow"
+                id="notificationDropdown"
+                style="display: none; width: 250px"
+              >
+                <h6 class="dropdown-header">Notificaciones</h6>
+                <div class="dropdown-item">🔔 Nueva venta registrada</div>
+                <div class="dropdown-item">📦 Pedido en camino</div>
+                <div class="dropdown-item">💳 Pago recibido</div>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item text-center text-success"
+                  >Ver todas</a
+                >
+              </div>
+            </div>
+            <div class="ml-5" style="margin-left: 30px">
+              <div
+                class="text-success font-weight-bold"
+                style="margin-right: 10px"
+              >
+                Tatiana Mercedes Suarez Rosas
+              </div>
+              <div class="text-muted">tatianasuarez332@gmail.com</div>
+            </div>
+            <div class="ml-4">
+              <img
+                alt="Cartoon beaver wearing a top hat and monocle, holding a cane"
+                class="rounded-circle"
+                height="50"
+                src="https://storage.googleapis.com/a1aa/image/-oruAM08FFeceuN2Y-t0_Zr19mVSEAYYH-Ngt_-6MNs.jpg"
+                width="50"
+              />
+            </div>
+          </div>
+          <div class="overlay" id="overlay"></div>
+          <!-- Panel lateral del perfil -->
+          <div class="profile-slideout" id="profilePanel">
+            <button class="close-btn" id="closeProfile">&times;</button>
+            <div class="profile-content">
+              <div class="w-100 max-w-sm mx-auto">
+                <div
+                  class="d-flex align-items-center justify-content-between p-4"
+                >
+                  <h1 class="text-gray-500 h5 font-semibold">PERFIL</h1>
+                  <div></div>
+                </div>
+                <div class="d-flex flex-column align-items-center mt-4">
+                  <div class="position-relative">
+                    <img
+                      id="profileImage"
+                      src="https://placehold.co/150x150"
+                      alt="Pixel art of a mole wearing a top hat and smoking a pipe"
+                      class="profile-img rounded-circle"
+                    />
+                    <input
+                      type="file"
+                      id="imageUpload"
+                      accept="image/*"
+                      style="display: none"
+                      onchange="loadFile(event)"
+                    />
+                    <button
+                      class="camera-btn"
+                      onclick="document.getElementById('imageUpload').click();"
+                    >
+                      <i class="fas fa-camera"></i>
+                    </button>
+                  </div>
+                  <div class="mt-4 w-100 px-4">
+                    <input
+                      type="text"
+                      class="form-control text-center text-gray-500 mb-3"
+                      readonly
+                      value="Tatiana Mercedes Suarez Rosas"
+                    />
+                    <input
+                      type="email"
+                      class="form-control text-center text-gray-400"
+                      readonly
+                      value="tatianasuarezrosas332@gmail.com"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex">
+          <!-- Sidebar -->
+          <div class="p-3" style="display: flex; flex-direction: column">
+            <nav class="nav flex-column sidebar" id="sidebar">
+              <a
+                class="nav-link active"
+                href="#"
+                style="margin-top: 50px; margin-left: 30px; margin-right: 30px"
+              >
+                <i class="fas fa-home me-2"></i>
+                Inicio
+              </a>
+              <a
+                class="nav-link"
+                href="#"
+                id="pedidos-toggle"
+                style="margin: 20px 30px 0px 30px; color: #096623"
+              >
+                <i class="fas fa-box me-2" style="color: #096623"></i> Pedidos
+                <i class="fas fa-chevron-down ms-2"></i>
+              </a>
+              <div
+                class="submenu"
+                id="submenu-pedidos"
+                style="
+                  background-color: rgba(9, 102, 35, 0.23);
+                  border-radius: 20px;
+                  width: 150px;
+                  margin-left: 80px;
+                  margin-top: 20px;
+                "
+              >
+                <a class="nav-link" href="#" style="margin-left: 10px">Línea</a>
+                <a class="nav-link" href="#" style="margin-left: 10px"
+                  >Presencial</a
+                >
+              </div>
+              <a
+                class="nav-link"
+                href="#"
+                style="margin-left: 30px; margin-right: 30px; color: #096623"
+              >
+                <i
+                  class="fas fa-file-invoice-dollar me-2"
+                  style="color: #096623"
+                ></i>
+                Estado Contable
+              </a>
+              <a
+                class="nav-link"
+                href="#"
+                style="margin-left: 30px; margin-right: 30px; color: #096623"
+              >
+                <i class="fas fa-users me-2" style="color: #096623"></i>
+                Clientes
+              </a>
+              <a
+                class="nav-link"
+                href="#"
+                style="margin-left: 30px; margin-right: 30px; color: #096623"
+              >
+                <i class="fas fa-envelope me-2" style="color: #096623"></i>
+                Mensajes
+              </a>
+              <a
+                class="nav-link"
+                href="#"
+                style="margin-left: 30px; margin-right: 30px; color: #096623"
+              >
+                <i class="fas fa-box-open me-2" style="color: #096623"></i>
+                Productos
+              </a>
+              <a
+                class="nav-link"
+                href="#"
+                style="margin-left: 30px; margin-right: 30px; color: #096623"
+              >
+                <i class="fas fa-book me-2" style="color: #096623"></i>
+                Libro Reclamaciones
+              </a>
+            </nav>
+            <div class="sidebar-footer" id="sidebar-1">
+              <a
+                class="nav-link"
+                href="#"
+                style="margin-left: 30px; margin-right: 30px; color: #096623"
+              >
+                <i class="fas fa-sign-out-alt me-2" style="color: #096623"></i>
+                Cerrar Sesión
+              </a>
+              <p
+                class="text-muted small mt-4"
+                style="margin-left: 30px; margin-right: 30px; color: #096623"
+              >
+                © 2024 GRINPLAS S.R.L. Todos los derechos reservados.
+              </p>
+            </div>
+          </div>
+
+          <!-- Main Content -->
+          <div class="content" id="content">
+            <div class="container" style="padding: 40px">
+              <div class="mb-4">
+                <a class="text-secondary" href="#"> Inicio </a>
+                /
+                <a class="text-custom" href="#"> Productos </a>
+              </div>
+              <h1 class="display-4 mb-4 text-custom">Historial de Productos</h1>
+              <h2 class="h5 mb-2 text-custom">Crear Nuevo Producto</h2>
+              <div class="custom-bg p-4 rounded-lg mb-6 border">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="text-custom" for="nombre"> Nombres </label>
+                    <input class="form-control" id="nombre" type="text" />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="text-custom" for="categoria">
+                      Categoría
+                    </label>
+                    <select class="form-control" id="categoria">
+                      <option>Selecciona Categoría</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="text-custom" for="stock"> Stock </label>
+                    <input class="form-control" id="stock" type="text" />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="text-custom" for="imagen"> Imagen </label>
+                    <input class="form-control" id="imagen" type="file" />
+                  </div>
+                  <div class="col-md-12 mb-3">
+                    <label class="text-custom" for="descripcion">
+                      Descripción
+                    </label>
+                    <textarea class="form-control" id="descripcion"></textarea>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="text-custom" for="precio"> Precio </label>
+                    <input class="form-control" id="precio" type="text" />
+                  </div>
+                </div>
+                <div class="text-right">
+                  <button class="btn custom-btn">Crear Nuevo Producto</button>
+                </div>
+              </div>
+              <div
+                class="d-flex justify-content-between align-items-center mb-4 mt-4"
+              >
+                <h2 class="h4 mb-0 text-custom">Listado de Productos</h2>
+                <div class="d-flex">
+                  <input
+                    class="form-control mr-2"
+                    placeholder="Filtrar productos"
+                    type="text"
+                  />
+                  <select class="form-control">
+                    <option>Categoría</option>
+                  </select>
+                </div>
+              </div>
+              <table
+                class="table table-bordered bg-white rounded-lg"
+                id="productosTable"
+              >
+                <thead class="thead-light">
+                  <tr>
+                    <th>Id</th>
+                    <th>Imagen</th>
+                    <th>Nombres</th>
+                    <th>Descripción</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>
+                      <img
+                        alt="Product Image"
+                        class="img-fluid"
+                        height="50"
+                        src="https://storage.googleapis.com/a1aa/image/x-UEpo23Xk7RD5GWzZ5IQ9GwFJi9qBlK-YVkrFaIDb0.jpg"
+                        width="50"
+                      />
+                    </td>
+                    <td>Producto 1</td>
+                    <td>Descripción del producto 1</td>
+                    <td>Categoría 1</td>
+                    <td>$10.00</td>
+                    <td>100</td>
+                    <td>
+                      <button
+                        class="btn btn-link btn-custom p-0"
+                        data-target="#editModal"
+                        data-toggle="modal"
+                      >
+                        <i class="fas fa-edit"> </i>
+                      </button>
+                      <button class="btn btn-link btn-custom p-0">
+                        <i
+                          class="fas fa-trash"
+                          onclick="confirmarEliminacion()"
+                        >
+                        </i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>
+                      <img
+                        alt="Product Image"
+                        class="img-fluid"
+                        height="50"
+                        src="https://storage.googleapis.com/a1aa/image/x-UEpo23Xk7RD5GWzZ5IQ9GwFJi9qBlK-YVkrFaIDb0.jpg"
+                        width="50"
+                      />
+                    </td>
+                    <td>Producto 2</td>
+                    <td>Descripción del producto 2</td>
+                    <td>Categoría 2</td>
+                    <td>$20.00</td>
+                    <td>200</td>
+                    <td>
+                      <button
+                        class="btn btn-link btn-custom p-0"
+                        data-target="#editModal"
+                        data-toggle="modal"
+                      >
+                        <i class="fas fa-edit"> </i>
+                      </button>
+                      <button class="btn btn-link btn-custom p-0">
+                        <i
+                          class="fas fa-trash"
+                          onclick="confirmarEliminacion()"
+                        >
+                        </i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>
+                      <img
+                        alt="Product Image"
+                        class="img-fluid"
+                        height="50"
+                        src="https://storage.googleapis.com/a1aa/image/x-UEpo23Xk7RD5GWzZ5IQ9GwFJi9qBlK-YVkrFaIDb0.jpg"
+                        width="50"
+                      />
+                    </td>
+                    <td>Producto 3</td>
+                    <td>Descripción del producto 3</td>
+                    <td>Categoría 3</td>
+                    <td>$30.00</td>
+                    <td>300</td>
+                    <td>
+                      <button
+                        class="btn btn-link btn-custom p-0"
+                        data-target="#editModal"
+                        data-toggle="modal"
+                      >
+                        <i class="fas fa-edit"> </i>
+                      </button>
+                      <button class="btn btn-link btn-custom p-0">
+                        <i
+                          class="fas fa-trash"
+                          onclick="confirmarEliminacion()"
+                        >
+                        </i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>
+                      <img
+                        alt="Product Image"
+                        class="img-fluid"
+                        height="50"
+                        src="https://storage.googleapis.com/a1aa/image/x-UEpo23Xk7RD5GWzZ5IQ9GwFJi9qBlK-YVkrFaIDb0.jpg"
+                        width="50"
+                      />
+                    </td>
+                    <td>Producto 4</td>
+                    <td>Descripción del producto 4</td>
+                    <td>Categoría 4</td>
+                    <td>$40.00</td>
+                    <td>400</td>
+                    <td>
+                      <button
+                        class="btn btn-link btn-custom p-0"
+                        data-target="#editModal"
+                        data-toggle="modal"
+                      >
+                        <i class="fas fa-edit"> </i>
+                      </button>
+                      <button class="btn btn-link btn-custom p-0">
+                        <i
+                          class="fas fa-trash"
+                          onclick="confirmarEliminacion()"
+                        >
+                        </i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>
+                      <img
+                        alt="Product Image"
+                        class="img-fluid"
+                        height="50"
+                        src="https://storage.googleapis.com/a1aa/image/x-UEpo23Xk7RD5GWzZ5IQ9GwFJi9qBlK-YVkrFaIDb0.jpg"
+                        width="50"
+                      />
+                    </td>
+                    <td>Producto 5</td>
+                    <td>Descripción del producto 5</td>
+                    <td>Categoría 5</td>
+                    <td>$50.00</td>
+                    <td>500</td>
+                    <td>
+                      <button
+                        class="btn btn-link btn-custom p-0"
+                        data-target="#editModal"
+                        data-toggle="modal"
+                      >
+                        <i class="fas fa-edit"> </i>
+                      </button>
+                      <button class="btn btn-link btn-custom p-0">
+                        <i
+                          class="fas fa-trash"
+                          onclick="confirmarEliminacion()"
+                        >
+                        </i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>
+                      <img
+                        alt="Product Image"
+                        class="img-fluid"
+                        height="50"
+                        src="https://storage.googleapis.com/a1aa/image/x-UEpo23Xk7RD5GWzZ5IQ9GwFJi9qBlK-YVkrFaIDb0.jpg"
+                        width="50"
+                      />
+                    </td>
+                    <td>Producto 6</td>
+                    <td>Descripción del producto 6</td>
+                    <td>Categoría 6</td>
+                    <td>$60.00</td>
+                    <td>600</td>
+                    <td>
+                      <button
+                        class="btn btn-link btn-custom p-0"
+                        data-target="#editModal"
+                        data-toggle="modal"
+                      >
+                        <i class="fas fa-edit"> </i>
+                      </button>
+                      <button class="btn btn-link btn-custom p-0">
+                        <i
+                          class="fas fa-trash"
+                          onclick="confirmarEliminacion()"
+                        >
+                        </i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>
+                      <img
+                        alt="Product Image"
+                        class="img-fluid"
+                        height="50"
+                        src="https://storage.googleapis.com/a1aa/image/x-UEpo23Xk7RD5GWzZ5IQ9GwFJi9qBlK-YVkrFaIDb0.jpg"
+                        width="50"
+                      />
+                    </td>
+                    <td>Producto 7</td>
+                    <td>Descripción del producto 7</td>
+                    <td>Categoría 7</td>
+                    <td>$70.00</td>
+                    <td>700</td>
+                    <td>
+                      <button
+                        class="btn btn-link btn-custom p-0"
+                        data-target="#editModal"
+                        data-toggle="modal"
+                      >
+                        <i class="fas fa-edit"> </i>
+                      </button>
+                      <button class="btn btn-link btn-custom p-0">
+                        <i
+                          class="fas fa-trash"
+                          onclick="confirmarEliminacion()"
+                        >
+                        </i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td>
+                      <img
+                        alt="Product Image"
+                        class="img-fluid"
+                        height="50"
+                        src="https://storage.googleapis.com/a1aa/image/x-UEpo23Xk7RD5GWzZ5IQ9GwFJi9qBlK-YVkrFaIDb0.jpg"
+                        width="50"
+                      />
+                    </td>
+                    <td>Producto 8</td>
+                    <td>Descripción del producto 8</td>
+                    <td>Categoría 8</td>
+                    <td>$80.00</td>
+                    <td>800</td>
+                    <td>
+                      <button
+                        class="btn btn-link btn-custom p-0"
+                        data-target="#editModal"
+                        data-toggle="modal"
+                      >
+                        <i class="fas fa-edit"> </i>
+                      </button>
+                      <button class="btn btn-link btn-custom p-0">
+                        <i
+                          class="fas fa-trash"
+                          onclick="confirmarEliminacion()"
+                        >
+                        </i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div
+      aria-hidden="true"
+      aria-labelledby="editModalLabel"
+      class="modal fade"
+      id="editModal"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-custom" id="editModalLabel">
+              Crear Nuevo Producto
+            </h5>
+            <button
+              aria-label="Close"
+              class="close"
+              data-dismiss="modal"
+              type="button"
+            >
+              <span aria-hidden="true"> × </span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="text-custom" for="modal-nombre"> Nombres </label>
+                <input class="form-control" id="modal-nombre" type="text" />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="text-custom" for="modal-categoria">
+                  Categoría
+                </label>
+                <select class="form-control" id="modal-categoria">
+                  <option>Selecciona Categoría</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="text-custom" for="modal-stock"> Stock </label>
+                <input class="form-control" id="modal-stock" type="text" />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="text-custom" for="modal-imagen"> Imagen </label>
+                <input class="form-control" id="modal-imagen" type="file" />
+              </div>
+              <div class="col-md-12 mb-3">
+                <label class="text-custom" for="modal-descripcion">
+                  Descripción
+                </label>
+                <textarea
+                  class="form-control"
+                  id="modal-descripcion"
+                ></textarea>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="text-custom" for="modal-precio"> Precio </label>
+                <input class="form-control" id="modal-precio" type="text" />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button class="btn custom-btn" type="button">
+              Guardar Cambios
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
+    <script src="dashboard.js"></script>
+    <script src="notification.js"></script>
+    <script src="perfil.js"></script>
+    <script src="pedidosnav.js"></script>
+    <script src="cliente.js"></script>
+    <script src="mensajes.js"></script>
+    <script src="producto.js"></script>
+    <script>
+      function confirmarEliminacion() {
+        Swal.fire({
+          title: "¿Estás seguro?",
+          text: "¡No podrás revertir esto!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#096623",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Sí, eliminar",
+          cancelButtonText: "Cancelar",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              "¡Eliminado!",
+              "El registro ha sido eliminado.",
+              "success"
+            ).then(() => {
+              console.log("Registro eliminado");
+            });
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

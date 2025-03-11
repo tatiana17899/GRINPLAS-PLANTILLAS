@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css"
+    />
+    <link rel="stylesheet" href="styleDashboard.css" />
+    <link rel="stylesheet" href="stylemensaje.css" />
+    <!--Font Awesome-->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <div class="d-flex flex-column">
+      <div class="d-flex flex-column">
+        <!-- Header -->
+        <div class="d-flex align-items-center p-3">
+          <button class="btn me-3" id="toggle-btn">
+            <img
+              src="https://i.ibb.co/84XNccvZ/menu-5.png"
+              alt="menu-5"
+              width="25px"
+              height="25px"
+              border="0"
+            />
+          </button>
+          <span class="fs-4 fw-bold text-success">GRINPLAS</span>
+          <div
+            class="profile-container ms-auto d-flex align-items-center"
+            id="profileContainer"
+          >
+            <div class="d-flex justify-content-end mb-4 position-relative">
+              <!-- Campana de notificaciones -->
+              <div class="notification-bell" id="notificationBell">
+                <i class="fas fa-bell fa-2x"></i>
+              </div>
+
+              <!-- Dropdown de notificaciones -->
+              <div
+                class="dropdown-menu dropdown-menu-end p-2 shadow"
+                id="notificationDropdown"
+                style="display: none; width: 250px"
+              >
+                <h6 class="dropdown-header">Notificaciones</h6>
+                <div class="dropdown-item">🔔 Nueva venta registrada</div>
+                <div class="dropdown-item">📦 Pedido en camino</div>
+                <div class="dropdown-item">💳 Pago recibido</div>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item text-center text-success"
+                  >Ver todas</a
+                >
+              </div>
+            </div>
+            <div class="ml-5" style="margin-left: 30px">
+              <div
+                class="text-success font-weight-bold"
+                style="margin-right: 10px"
+              >
+                Tatiana Mercedes Suarez Rosas
+              </div>
+              <div class="text-muted">tatianasuarez332@gmail.com</div>
+            </div>
+            <div class="ml-4">
+              <img
+                alt="Cartoon beaver wearing a top hat and monocle, holding a cane"
+                class="rounded-circle"
+                height="50"
+                src="https://storage.googleapis.com/a1aa/image/-oruAM08FFeceuN2Y-t0_Zr19mVSEAYYH-Ngt_-6MNs.jpg"
+                width="50"
+              />
+            </div>
+          </div>
+          <div class="overlay" id="overlay"></div>
+          <!-- Panel lateral del perfil -->
+          <div class="profile-slideout" id="profilePanel">
+            <button class="close-btn" id="closeProfile">&times;</button>
+            <div class="profile-content">
+              <div class="w-100 max-w-sm mx-auto">
+                <div
+                  class="d-flex align-items-center justify-content-between p-4"
+                >
+                  <h1 class="text-gray-500 h5 font-semibold">PERFIL</h1>
+                  <div></div>
+                </div>
+                <div class="d-flex flex-column align-items-center mt-4">
+                  <div class="position-relative">
+                    <img
+                      id="profileImage"
+                      src="https://placehold.co/150x150"
+                      alt="Pixel art of a mole wearing a top hat and smoking a pipe"
+                      class="profile-img rounded-circle"
+                    />
+                    <input
+                      type="file"
+                      id="imageUpload"
+                      accept="image/*"
+                      style="display: none"
+                      onchange="loadFile(event)"
+                    />
+                    <button
+                      class="camera-btn"
+                      onclick="document.getElementById('imageUpload').click();"
+                    >
+                      <i class="fas fa-camera"></i>
+                    </button>
+                  </div>
+                  <div class="mt-4 w-100 px-4">
+                    <input
+                      type="text"
+                      class="form-control text-center text-gray-500 mb-3"
+                      readonly
+                      value="Tatiana Mercedes Suarez Rosas"
+                    />
+                    <input
+                      type="email"
+                      class="form-control text-center text-gray-400"
+                      readonly
+                      value="tatianasuarezrosas332@gmail.com"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex">
+          <!-- Sidebar -->
+          <div class="p-3" style="display: flex; flex-direction: column">
+            <nav class="nav flex-column sidebar" id="sidebar">
+              <a
+                class="nav-link active"
+                href="#"
+                style="margin-top: 50px; margin-left: 30px; margin-right: 30px"
+              >
+                <i class="fas fa-home me-2"></i>
+                Inicio
+              </a>
+              <a
+                class="nav-link"
+                href="#"
+                id="pedidos-toggle"
+                style="margin: 20px 30px 0px 30px; color: #096623"
+              >
+                <i class="fas fa-box me-2" style="color: #096623"></i> Pedidos
+                <i class="fas fa-chevron-down ms-2"></i>
+              </a>
+              <div
+                class="submenu"
+                id="submenu-pedidos"
+                style="
+                  background-color: rgba(9, 102, 35, 0.23);
+                  border-radius: 20px;
+                  width: 150px;
+                  margin-left: 80px;
+                  margin-top: 20px;
+                "
+              >
+                <a class="nav-link" href="#" style="margin-left: 10px">Línea</a>
+                <a class="nav-link" href="#" style="margin-left: 10px"
+                  >Presencial</a
+                >
+              </div>
+              <a
+                class="nav-link"
+                href="#"
+                style="margin-left: 30px; margin-right: 30px; color: #096623"
+              >
+                <i
+                  class="fas fa-file-invoice-dollar me-2"
+                  style="color: #096623"
+                ></i>
+                Estado Contable
+              </a>
+              <a
+                class="nav-link"
+                href="#"
+                style="margin-left: 30px; margin-right: 30px; color: #096623"
+              >
+                <i class="fas fa-users me-2" style="color: #096623"></i>
+                Clientes
+              </a>
+              <a
+                class="nav-link"
+                href="#"
+                style="margin-left: 30px; margin-right: 30px; color: #096623"
+              >
+                <i class="fas fa-envelope me-2" style="color: #096623"></i>
+                Mensajes
+              </a>
+              <a
+                class="nav-link"
+                href="#"
+                style="margin-left: 30px; margin-right: 30px; color: #096623"
+              >
+                <i class="fas fa-box-open me-2" style="color: #096623"></i>
+                Productos
+              </a>
+              <a
+                class="nav-link"
+                href="#"
+                style="margin-left: 30px; margin-right: 30px; color: #096623"
+              >
+                <i class="fas fa-book me-2" style="color: #096623"></i>
+                Libro Reclamaciones
+              </a>
+            </nav>
+            <div class="sidebar-footer" id="sidebar-1">
+              <a
+                class="nav-link"
+                href="#"
+                style="margin-left: 30px; margin-right: 30px; color: #096623"
+              >
+                <i class="fas fa-sign-out-alt me-2" style="color: #096623"></i>
+                Cerrar Sesión
+              </a>
+              <p
+                class="text-muted small mt-4"
+                style="margin-left: 30px; margin-right: 30px; color: #096623"
+              >
+                © 2024 GRINPLAS S.R.L. Todos los derechos reservados.
+              </p>
+            </div>
+          </div>
+
+          <!-- Main Content -->
+          <div class="content" id="content">
+            <div class="container p-4" style="padding: 40px">
+              <nav class="text-sm mb-4">
+                <a href="#" style="text-decoration: none; color: #7f7f7f"
+                  >Inicio</a
+                >/
+                <a
+                  href="#"
+                  style="
+                    text-decoration: none;
+                    color: #09c33d;
+                    font-weight: bold;
+                  "
+                  >Clientes</a
+                >
+              </nav>
+              <h1 class="h4 mb-6" style="margin-bottom: 20px">
+                Historial de Reclamos
+              </h1>
+              <div class="table-responsive">
+                <table id="messagesTable" class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Nombres</th>
+                      <th>Telefono</th>
+                      <th>Email</th>
+                      <th>Detalle</th>
+                      <th>Responder</th>
+                      <th>Estado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Juan Pérez</td>
+                      <td>123-456-7890</td>
+                      <td>juan.perez@example.com</td>
+                      <td>Consulta sobre el producto A</td>
+                      <td class="text-center">
+                        <i class="fas fa-envelope"></i>
+                      </td>
+                      <td class="text-center">
+                        <input type="checkbox" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>María López</td>
+                      <td>987-654-3210</td>
+                      <td>maria.lopez@example.com</td>
+                      <td>Solicitud de información</td>
+                      <td class="text-center">
+                        <i class="fas fa-envelope"></i>
+                      </td>
+                      <td class="text-center">
+                        <input type="checkbox" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Carlos García</td>
+                      <td>555-123-4567</td>
+                      <td>carlos.garcia@example.com</td>
+                      <td>Reclamación de pedido</td>
+                      <td class="text-center">
+                        <i class="fas fa-envelope"></i>
+                      </td>
+                      <td class="text-center">
+                        <input type="checkbox" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Ana Martínez</td>
+                      <td>444-555-6666</td>
+                      <td>ana.martinez@example.com</td>
+                      <td>Consulta sobre el servicio B</td>
+                      <td class="text-center">
+                        <i class="fas fa-envelope"></i>
+                      </td>
+                      <td class="text-center">
+                        <input type="checkbox" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Pedro Sánchez</td>
+                      <td>111-222-3333</td>
+                      <td>pedro.sanchez@example.com</td>
+                      <td>Consulta sobre el producto C</td>
+                      <td class="text-center">
+                        <i class="fas fa-envelope"></i>
+                      </td>
+                      <td class="text-center">
+                        <input type="checkbox" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Lucía Fernández</td>
+                      <td>222-333-4444</td>
+                      <td>lucia.fernandez@example.com</td>
+                      <td>Solicitud de devolución</td>
+                      <td class="text-center">
+                        <i class="fas fa-envelope"></i>
+                      </td>
+                      <td class="text-center">
+                        <input type="checkbox" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Jorge Ramírez</td>
+                      <td>333-444-5555</td>
+                      <td>jorge.ramirez@example.com</td>
+                      <td>Consulta sobre el servicio D</td>
+                      <td class="text-center">
+                        <i class="fas fa-envelope"></i>
+                      </td>
+                      <td class="text-center">
+                        <input type="checkbox" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Elena Gómez</td>
+                      <td>444-555-6666</td>
+                      <td>elena.gomez@example.com</td>
+                      <td>Reclamación de factura</td>
+                      <td class="text-center">
+                        <i class="fas fa-envelope"></i>
+                      </td>
+                      <td class="text-center">
+                        <input type="checkbox" />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
+    <script src="dashboard.js"></script>
+    <script src="notification.js"></script>
+    <script src="perfil.js"></script>
+    <script src="pedidosnav.js"></script>
+    <script src="cliente.js"></script>
+    <script src="mensajes.js"></script>
+    <script>
+      var loadFile = function (event) {
+        var image = document.getElementById("profileImage");
+        image.src = URL.createObjectURL(event.target.files[0]);
+      };
+    </script>
+  </body>
+</html>

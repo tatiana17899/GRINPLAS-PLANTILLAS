@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GRINPLAS S.R.L</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="styleLibroReclamos.css" />
+    <!--Font Awesome-->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="loading-screen">
+      <i class="fa-solid fa-bag-shopping bag-spinner"></i>
+      <div class="grinplas-text">GRINPLAS</div>
+    </div>
+
+    <main>
+      <header style="margin-top: 80px">
+        <div class="nav-telefono-container">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">GRINPLAS</a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">¿Quiénes Somos?</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Procesos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Productos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link-prod" href="#">
+                      <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <button class="btn btn-outline-success">
+                      Iniciar Sesión
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <section class="telefono">
+            <div class="container d-flex align-items-center">
+              <i class="fa-solid fa-phone"></i>
+              <p class="numero mb-0">(+51) 935 789 352</p>
+            </div>
+          </section>
+        </div>
+        <section class="hero">
+          <div class="complaints-container">
+            <!-- Header Section -->
+            <div class="header">
+              <h2 style="font-size: 30px; font-weight: bold">
+                LIBRO DE RECLAMACIONES
+              </h2>
+            </div>
+
+            <!-- Information Section -->
+            <div
+              class="info-section mb-4"
+              style="background-color: rgba(217, 217, 217, 0.39)"
+            >
+              <ol>
+                <li class="list-item">
+                  <strong>Objetivo</strong>
+                  <p>
+                    Garantizar la satisfacción del cliente y la mejora continua
+                    de nuestros productos y servicios.
+                  </p>
+                </li>
+                <li class="list-item">
+                  <strong>Presentación del Reclamo</strong>
+                  <p>Los clientes pueden presentar reclamos a través de:</p>
+                  <ul class="bullet-point">
+                    <li>Correo electrónico: soporte@grinplas.com</li>
+                    <li>Teléfono: +51 XXXXXXXXX</li>
+                    <li>Mediante la página web de www.Grinplas.com</li>
+                  </ul>
+                </li>
+                <li class="list-item">
+                  <strong>Información Necesaria</strong>
+                  <p>Al presentar un reclamo, se debe proporcionar:</p>
+                  <ul class="bullet-point">
+                    <li>Nombre completo</li>
+                    <li>Datos de contacto</li>
+                    <li>Número de factura o comprobante de compra</li>
+                    <li>Descripción del problema</li>
+                    <li>Fotografías del producto (si aplica)</li>
+                    <li>Fecha de compra</li>
+                  </ul>
+                </li>
+                <li class="list-item">
+                  <strong>Proceso de Resolución</strong>
+                  <ul class="bullet-point">
+                    <li>Confirmación de recepción en 24 horas hábiles.</li>
+                    <li>
+                      Evaluación y contacto con el cliente si es necesario.
+                    </li>
+                    <li>
+                      Propuesta de solución: reemplazo del producto, reembolso,
+                      crédito o acuerdo mutuo.
+                    </li>
+                    <li>Resolución en un máximo de 10 días hábiles.</li>
+                  </ul>
+                </li>
+                <li class="list-item">
+                  <strong>Confidencialidad</strong>
+                  <p>
+                    Toda la información será tratada con confidencialidad y
+                    utilizada solo para resolver el reclamo y mejorar nuestros
+                    servicios.
+                  </p>
+                </li>
+              </ol>
+            </div>
+
+            <!-- Form Section -->
+            <div class="form-section">
+              <h3 class="form-title">¿Cuál es su reclamo?</h3>
+
+              <form id="reclamoForm">
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="nombres" class="form-label">Nombres</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nombres"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="telefono"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="ruc" class="form-label">RUC</label>
+                    <input type="text" class="form-control" id="ruc" />
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <label for="detalleReclamo" class="form-label"
+                    >Detalle del Reclamo</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="detalleReclamo"
+                    rows="5"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="mb-3">
+                  <label for="comprobante" class="form-label"
+                    >Adjuntar comprobante o fotografía (opcional)</label
+                  >
+                  <input class="form-control" type="file" id="comprobante" />
+                </div>
+
+                <div class="text-center mt-4">
+                  <button type="submit" class="btn send-btn">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-send send-icon"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"
+                      />
+                    </svg>
+                    Enviar Mensaje
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </header>
+      <div class="container"></div>
+      <footer class="footer py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 mb-4 mb-md-0">
+              <h2 class="h4" style="font-weight: bold">GRINPLAS</h2>
+              <p style="font-weight: bold">
+                Nos esforzamos en crear los mejores plasticos, como bolsas y
+                mangas, ofreciendo siempre un servicio de excelecia por PYMEs.
+              </p>
+              <a
+                href="Dashboard.html"
+                style="text-decoration: none; color: #ffffff; font-weight: bold"
+                >Administrador</a
+              >
+            </div>
+            <div class="col-md-4 mb-4 mb-md-0">
+              <h3 class="h5">Nos Encontramos:</h3>
+              <p style="color: #1b665e">
+                MZA. E-1 LOTE. 9 ASOC ALAMEDA DEL NORTE (ALT OVALO DE PUENTE
+                PIEDRA) LIMA - LIMA - PUENTE PIEDRA
+              </p>
+              <h3 class="h5 mt-4">Email</h3>
+              <p style="color: #1b665e">soporte@grinplas.com</p>
+            </div>
+            <div class="col-md-4 mb-4 mb-md-0">
+              <h3 class="h5">Llámenos</h3>
+              <p style="color: #1b665e">+51 935 789 352</p>
+              <button class="btn mt-4">
+                <i
+                  class="fas fa-book-open me-2"
+                  style="
+                    color: #1b665e;
+                    background-color: rgba(255, 255, 255, 0.71);
+                    font-size: 40px;
+                    padding: 10px;
+                    border-radius: 10px;
+                  "
+                ></i>
+                Libro de reclamaciones
+              </button>
+            </div>
+          </div>
+          <div class="row mt-4 pt-4 border-top border-light">
+            <div class="col-md-6">
+              <p
+                class="mb-0"
+                style="color: rgba(9, 102, 35, 0.53); font-weight: bold"
+              >
+                © 2024 GRINPLAS S.R.L. Todos los derechos reservados.
+              </p>
+            </div>
+            <div class="col-md-6 text-md-end">
+              <a href="#">Políticas de Reclamos.</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </main>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

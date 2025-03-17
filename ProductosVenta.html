@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos - Grinplas</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styleVenta.css" />
+    <!--Font Awesome-->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .header-container {
+        position: relative;
+        text-align: center;
+        color: white;
+      }
+      .header-container img {
+        width: 95%;
+        margin: 10px;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 30px;
+      }
+      .productos-titulo {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgb(255, 255, 255);
+        padding: 30px 40px;
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        color: rgba(9, 102, 35, 0.53);
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .producto-card {
+        background: #fff;
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        position: relative;
+        width: 70%;
+      }
+      .producto-card .placeholder {
+        width: 100%;
+        height: 150px;
+        background: #ccc;
+        border-radius: 10px;
+      }
+      .producto-card h5 {
+        font-weight: bold;
+        margin-top: 10px;
+      }
+      .producto-card p {
+        font-size: 14px;
+        color: #666;
+      }
+      .producto-card .precio-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .producto-card .precio {
+        font-size: 23px;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.72);
+        margin: 0;
+      }
+      .producto-card .btn-compra {
+        background: #027532;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 50%;
+        font-size: 18px;
+      }
+      .filter-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      .filter-container select {
+        width: 48%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      .modal-content {
+        border-radius: 30px;
+        width: 40vw;
+        padding: 10px;
+      }
+      .modal-header {
+        color: white;
+        border-radius: 15px 15px 0 0;
+        padding: 15px;
+        text-align: center;
+      }
+      .modal-body {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .modal-body img {
+        width: 250px;
+        height: auto;
+        border-radius: 10px;
+      }
+      .modal-info {
+        flex: 1;
+      }
+      .cantidad-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .cantidad-container button {
+        background: rgba(121, 195, 134, 0.58);
+        color: white;
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 0px;
+      }
+      /* Nuevos estilos para el navbar */
+      .navbar-custom {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000; /* Asegura que el navbar esté encima de la imagen */
+        padding: 10px;
+      }
+      .form-select {
+        width: 60px;
+      }
+      .filter-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .select-custom {
+        width: 45%; /* Reduces el ancho de los select */
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px solid; /* Grosor del borde */
+      }
+
+      .select-1 {
+        border-color: rgba(
+          9,
+          102,
+          35,
+          0.56
+        ); /* Borde color #096623 con 56% de opacidad */
+      }
+
+      .select-2 {
+        border-color: rgba(
+          0,
+          0,
+          0,
+          0.39
+        ); /* Borde color #000000 con 39% de opacidad */
+      }
+      .modal-footer {
+        display: flex;
+        justify-content: center; /* Centra horizontalmente */
+        align-items: center; /* Centra verticalmente (opcional) */
+        padding: 10px; /* Añade un poco de espacio alrededor */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">GRINPLAS</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">¿Quiénes Somos?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Procesos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link-prod" href="#">
+                <i class="fas fa-shopping-cart carrito-icono"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="IniciarSesion.html" class="btn btn-outline-success">
+                Iniciar Sesión
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header con imagen -->
+    <div class="header-container">
+      <img
+        src="https://storage.googleapis.com/a1aa/image/Zd7ibhMaiKLnGZRfHf8zS871gP0VEUbwy664t3aCRhN8WxHUA.jpg"
+        alt="Imagen de encabezado"
+      />
+      <div class="productos-titulo">
+        NUESTROS <span class="text-success">PRODUCTOS</span>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="filter-container">
+        <select class="form-select select-custom select-1">
+          <option selected>Producto</option>
+        </select>
+        <select class="form-select select-custom select-2">
+          <option selected>Categorías</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div
+            class="producto-card"
+            style="background-color: rgba(0, 0, 0, 0.05)"
+          >
+            <img
+              src="https://storage.googleapis.com/a1aa/image/Zd7ibhMaiKLnGZRfHf8zS871gP0VEUbwy664t3aCRhN8WxHUA.jpg"
+              alt="Imagen de encabezado"
+              height="220px"
+              width="220px"
+            />
+            <h5>PLÁSTICO COLOR ROJO</h5>
+            <p>Descripción de plástico de color rojo, jsjs no sé qué decir</p>
+            <div class="precio-container">
+              <p class="precio">S/10.00</p>
+              <button
+                class="btn-compra"
+                data-bs-toggle="modal"
+                data-bs-target="#compraModal"
+              >
+                <i class="fas fa-shopping-cart carrito-icono"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="compraModal"
+      tabindex="-1"
+      aria-labelledby="compraModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="https://storage.googleapis.com/a1aa/image/Zd7ibhMaiKLnGZRfHf8zS871gP0VEUbwy664t3aCRhN8WxHUA.jpg"
+              alt="Producto"
+            />
+            <div class="modal-info">
+              <h5 style="font-weight: bold">PLÁSTICO COLOR ROJO</h5>
+              <p>
+                Descripción de plástico de color rojo, jsjs no sé qué decir (1
+                millar)
+              </p>
+              <p style="color: rgba(59, 59, 59, 0.71); font-size: 10px">
+                Medida: 16x20x5
+              </p>
+              <div class="d-flex">
+                <p
+                  class="precio"
+                  style="font-weight: bold; font-size: 30px; color: #3b3b3b"
+                >
+                  S/12.00
+                </p>
+                <div class="cantidad-container" style="margin-left: 30%">
+                  <button>-</button>
+                  <span>1</span>
+                  <button>+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success d-flex">
+              <i
+                class="fas fa-shopping-cart carrito-icono"
+                style="margin-right: 10px"
+              ></i>
+              Confirmar Compra
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const cantidadSpan = document.querySelector(".cantidad-container span");
+        const btnMenos = document.querySelector(
+          ".cantidad-container button:first-child"
+        );
+        const btnMas = document.querySelector(
+          ".cantidad-container button:last-child"
+        );
+
+        let cantidad = 1;
+
+        btnMas.addEventListener("click", function () {
+          cantidad++;
+          cantidadSpan.textContent = cantidad;
+        });
+
+        btnMenos.addEventListener("click", function () {
+          if (cantidad > 1) {
+            cantidad--;
+            cantidadSpan.textContent = cantidad;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

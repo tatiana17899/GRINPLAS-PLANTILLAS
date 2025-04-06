@@ -26,7 +26,8 @@ body {
   max-width: 240px;
   height: 30vh;
   border-radius: 20px;
-  margin-top: 750px;
+  margin-top: auto;
+  padding-top: 20px;
   background-color: #dbebe0;
   transition: all 0.3s;
   display: flex;

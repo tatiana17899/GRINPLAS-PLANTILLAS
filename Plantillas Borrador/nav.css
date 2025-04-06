@@ -1,0 +1,25 @@
+#sidebar {
+  width: 30vw;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+#sidebar.collapsed {
+  width: 0 !important;
+  min-width: 0 !important;
+}
+
+#main-content {
+  width: calc(110vw - 20vw);
+  transition: width 0.3s ease;
+}
+
+#main-content.expanded {
+  width: 800vw;
+}
+#submenu.collapse {
+  transition: all 0.15s ease !important;
+}
+#submenu {
+  overflow: hidden !important;
+}

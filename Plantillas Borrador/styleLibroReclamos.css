@@ -512,7 +512,7 @@ h2 .line2 {
   background-color: var(--first-color);
 }
 .complaints-container {
-  max-width: 800px;
+  max-width: 900px;
   margin-top: 200px;
   margin-left: 25%;
   margin-right: 25%;
@@ -555,15 +555,15 @@ h2 .line2 {
 
 .send-btn {
   background-color: white;
-  color: #28a745;
-  border: 2px solid #28a745;
+  color: #096623;
+  border: 2px solid #096623;
   padding: 8px 20px;
-  border-radius: 20px;
+  border-radius: 10px;
   transition: all 0.3s;
 }
 
 .send-btn:hover {
-  background-color: #28a745;
+  background-color: #096623;
   color: white;
 }
 

@@ -31,56 +31,6 @@
 
     <main>
       <header style="margin-top: 80px">
-        <div class="nav-telefono-container">
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">GRINPLAS</a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">¿Quiénes Somos?</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Procesos</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Productos</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link-prod" href="#">
-                      <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <button class="btn btn-outline-success">
-                      Iniciar Sesión
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-          <section class="telefono">
-            <div class="container d-flex align-items-center">
-              <i class="fa-solid fa-phone"></i>
-              <p class="numero mb-0">(+51) 935 789 352</p>
-            </div>
-          </section>
-        </div>
         <section class="hero">
           <div class="complaints-container">
             <!-- Header Section -->
@@ -99,18 +49,17 @@
                 <li class="list-item">
                   <strong>Objetivo</strong>
                   <p>
-                    Garantizar la satisfacción del cliente y la mejora continua
-                    de nuestros productos y servicios.
+                    Garantizar la satisfacción del cliente y la mejora continua de nuestros productos y servicios.
                   </p>
                 </li>
                 <li class="list-item">
                   <strong>Presentación del Reclamo</strong>
-                  <p>Los clientes pueden presentar reclamos a través de:</p>
-                  <ul class="bullet-point">
-                    <li>Correo electrónico: soporte@grinplas.com</li>
-                    <li>Teléfono: +51 XXXXXXXXX</li>
-                    <li>Mediante la página web de www.Grinplas.com</li>
-                  </ul>
+                  <p>Los clientes pueden presentar reclamos a través de:<br>
+                  Correo electrónico: soporte@grinplas.com<br>
+                  Teléfono:  <br>
+                  Mediante la pagina web de www.Grinplas.com
+                  </p>
+                
                 </li>
                 <li class="list-item">
                   <strong>Información Necesaria</strong>
@@ -154,60 +103,17 @@
               <h3 class="form-title">¿Cuál es su reclamo?</h3>
 
               <form id="reclamoForm">
-                <div class="row mb-3">
-                  <div class="col-md-6 mb-3 mb-md-0">
-                    <label for="nombres" class="form-label">Nombres</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="nombres"
-                      required
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="email" class="form-label">Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="email"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <div class="col-md-6 mb-3 mb-md-0">
-                    <label for="telefono" class="form-label">Teléfono</label>
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="telefono"
-                      required
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="ruc" class="form-label">RUC</label>
-                    <input type="text" class="form-control" id="ruc" />
-                  </div>
-                </div>
-
                 <div class="mb-4">
-                  <label for="detalleReclamo" class="form-label"
+                  <label for="detalleReclamo" class="form-label" style="color:#096623"
                     >Detalle del Reclamo</label
                   >
                   <textarea
                     class="form-control"
                     id="detalleReclamo"
                     rows="5"
+                    style="border: #096623 solid 2px; border-radius: 20px; height: 200px"
                     required
                   ></textarea>
-                </div>
-
-                <div class="mb-3">
-                  <label for="comprobante" class="form-label"
-                    >Adjuntar comprobante o fotografía (opcional)</label
-                  >
-                  <input class="form-control" type="file" id="comprobante" />
                 </div>
 
                 <div class="text-center mt-4">
